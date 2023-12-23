@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>детали</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container-fluid text-center">
+    <h3>детали услуги</h3>
+
+    <div th:if="${messages}" class="alert alert-success text-center">
+        [[${messages}]]
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">id : [[${product.id}]]</h5>
+            <h5 class="card-title">название : [[${product.name}]]</h5>
+            <p class="card-text">
+                <span>описание: [[${product.description}]]</span>
+                <br>
+                <span>цена : [[${product.price}]]</span>
+                <br>
+                <span>количество в наличии: [[${product.quantity}]]</span>
+            </p>
+        </div>
+    </div>
+    <br>
+    <h3>отзывы</h3>
+    <div>
+        <ul th:each="review : ${product.reviewSet}" class="list-group list-group-flush">
+            <li class="list-group-item">id: [[${review.id}]]</li>
+            <li class="list-group-item">имя пользователя: [[${review.username}]]</li>
+            <li class="list-group-item">комментарий : [[${review.comment}]]</li>
+        </ul>
+    </div>
+
+    <br>
+
+    <div class="m-2">
+        <a class="btn btn-primary" th:href="@{'/' + ${product.id}+'/reviews/new'}">оставить отзыв</a>
+    </div>
+</div>
+</div>
+</body>
+</html>

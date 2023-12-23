@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container-fluid text-center">
+    <div><h3>мои услуги</h3></div>
+        <div class="m-2">
+            <a type="button" class="btn btn-light" th:href="@{/products/new}">добавить новую услугу</a>
+        </div>
+    <br>
+
+
+    <div th:if="${messages}" class="alert alert-success text-center">
+        [[${messages}]]
+    </div>
+
+    <div>
+    <table class="table table-hover">
+        <thead class="table-dark">
+        <tr>
+        <th>id</th>
+        <th>название</th>
+        <th>описание</th>
+        <th>цена</th>
+        <th>количество</th>
+        <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="product : ${listProducts}">
+            <tr>
+                <td>[[${product.id}]]</td>
+                <td>[[${product.name}]]</td>
+                <td>[[${product.description}]]</td>
+                <td>[[${product.price}]]</td>
+                <td>[[${product.quantity}]]</td>
+            <td>
+                <a th:href="@{'/products/details/' + ${product.id}}" class="btn btn-primary">подробнее</a>
+                <a th:href="@{'/products/edit/' + ${product.id}}" class="btn btn-secondary">редактировать</a>
+                <a th:href="@{'/products/delete/' + ${product.id}}" class="btn btn-danger">удалить</a>
+            </td>
+        </th:block>
+        </tbody>
+    </table>
+    </div>
+</div>
+
+</body>
+</html>
